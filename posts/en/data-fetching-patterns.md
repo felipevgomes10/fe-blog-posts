@@ -6,26 +6,6 @@
 
  <!-- https://utfs.io/a/oqi3glmmqm/WfWc1HX19bacfgrcXJZNz1yDPrIUm6tXVKWsRvwL7xh3c49n -->
 
-# Summary
-
-- [Introduction](##Introduction)
-- [The ways of caching](##The%20ways%20of%20caching)
-- [Tanstack Query](##Tanstack%20Query)
-	- [How does Tanstack Query cache work?](##How%20does%20Tanstack%20Query%20cache%20work?)
-	- [Initial vs placeholder data](##Initial%20vs%20Placeholder%20data)
-	- [Prefetching data](##Prefetching%20data)
-	- [Ensure query data](##Ensure%20query%20data)
-	- [Infinite queries](##Infinite%20queries)
-	- [Devtools](##Devtools)
-- [Routes loaders](##Routes%20loaders)
-- [Integrating routes loaders and Tanstack Query](##Integrating%20routes%20loaders%20and%20Tanstack%20Query)
-- [Good practices and performance](##Good%20practices%20and%20performance)
-	- [Awaiting promises](##Awaiting%20promises)
-	- [Reusability and isolation](##Reusability%20and%20isolation)
-	- [Query client](##Query%20client)
-	- [Linting](##Linting)
-
----
 ## Introduction
 
 ***Data fetching patterns*** are strategies that can be leveraged to ***improve the overall application's perceived performance***. By using these patterns we give the users the feeling the application is quicker than it actually is. There are multiple ways this can be achieved in a client-side application, each one of them is equally important and serves its unique purpose of improving ***User Experience*** and even ***Developer Experience***.
