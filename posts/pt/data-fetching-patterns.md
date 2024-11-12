@@ -498,8 +498,8 @@ function Projects() {
 
 Além disso, ***é possível fazer prefetch dos dados de queries infinitas dentro de effects, callbacks e fora do React*** usando:
 
-[`prefetchInfiniteQuery`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientprefetchinfinitequery)
-[`ensureInfiniteQueryData`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientensureinfinitequerydata)
+- [`prefetchInfiniteQuery`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientprefetchinfinitequery)
+- [`ensureInfiniteQueryData`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientensureinfinitequerydata)
 
 Para mais detalhes sobre as opções de query infinita:
 
