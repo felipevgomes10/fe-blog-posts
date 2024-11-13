@@ -6,7 +6,7 @@
 
  <!-- https://utfs.io/a/oqi3glmmqm/WfWc1HX19bacmhVS119geSuB3rftZEV8aJWIonQ0Clc2qhvs -->
 
-# Understanding Derived State in React
+## Understanding Derived State in React
 
 Derived state in React represents values calculated from existing state or props. While simple in concept, understanding when and how to use derived state effectively can significantly improve application performance and code maintainability.
 

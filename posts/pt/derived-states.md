@@ -6,7 +6,7 @@
 
  <!-- https://utfs.io/a/oqi3glmmqm/WfWc1HX19bacmhVS119geSuB3rftZEV8aJWIonQ0Clc2qhvs -->
 
-# Entendendo estados derivados no React
+## Entendendo estados derivados no React
 
 Estado derivado no React representa valores calculados a partir de state ou props existentes. Embora seja simples em conceito, entender quando e como usar um estado derivado de forma eficaz pode melhorar significativamente a performance da aplicação e a manutenibilidade do código.
 
