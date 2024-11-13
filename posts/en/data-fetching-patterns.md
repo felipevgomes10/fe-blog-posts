@@ -8,15 +8,15 @@
 
 ## Introduction
 
-***Data fetching patterns*** are strategies that can be leveraged to ***improve the overall application's perceived performance***. By using these patterns we give the users the feeling the application is quicker than it actually is. There are multiple ways this can be achieved in a client-side application, each one of them is equally important and serves its unique purpose of improving ***User Experience*** and even ***Developer Experience***.
+Data fetching patterns are strategies that can be leveraged to improve the overall application's perceived performance. By using these patterns we give the users the feeling the application is quicker than it actually is. There are multiple ways this can be achieved in a client-side application, each one of them is equally important and serves its unique purpose of improving User Experience and even Developer Experience.
 
 ## The ways of caching
 
 ![kylo](https://utfs.io/a/oqi3glmmqm/WfWc1HX19bac2DgDwOWICGfsXt1UAzZBmRJd7OWolP4TLjkq)
 
-***In-Memory Caching*** is one of the most important mechanisms there is in client-side applications that can be used to improve the performance perceived by the users. One thing though that's worth mentioning about it is that ***in-memory caching is different than client caching***. While client caching is something enabled by default in modern browsers, the in-memory cache is ***controlled by the application itself*** and can be done manually or by using third-party libraries, also it can be persisted by using the native storage options available in the browsers.
+In-Memory Caching is one of the most important mechanisms there is in client-side applications that can be used to improve the performance perceived by the users. One thing though that's worth mentioning about it is that in-memory caching is different than client caching. While client caching is something enabled by default in modern browsers, the in-memory cache is controlled by the application itself and can be done manually or by using third-party libraries, also it can be persisted by using the native storage options available in the browsers.
 
-In-Memory Caching is a strategy that consists of ***saving the fetched data in memory***, usually using a Map for efficiency. A simple way of implementing this would be:
+In-Memory Caching is a strategy that consists of saving the fetched data in memory, usually using a Map for efficiency. A simple way of implementing this would be:
 
 ```ts
 // Simple in-memory cache implementation
@@ -60,13 +60,13 @@ const loadData = async (id) => {
 }
 ```
 
-While this implementation may come across as enough, there are some situations that need to be taken into consideration like: ***error handling, robustness, performance, race conditions, stale data, state management and several other issues that may emerge from this***. So, a more convenient approach would be using something that's already being used and tested by millions of other developers like [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview).
+While this implementation may come across as enough, there are some situations that need to be taken into consideration like: error handling, robustness, performance, race conditions, stale data, state management and several other issues that may emerge from this. So, a more convenient approach would be using something that's already being used and tested by millions of other developers like [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview).
 
 ## Tanstack Query
 
-Basically, [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview) is ***wrapper around http requests that manages queries and mutations in client-side applications***. This tool ***makes it possible for developers to focus on building great experiences*** while leaving the complexity of dealing with the cache to the tool itself.
+Basically, [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview) is wrapper around http requests that manages queries and mutations in client-side applications. This tool makes it possible for developers to focus on building great experiences while leaving the complexity of dealing with the cache to the tool itself.
 
-Even though Tanstack Query manages the cache by itself, it also ***provides a fine grained control over the cache stored in memory***. It has a series of built-in methods that allows the application to step in and take control of what's happening behind the scenes.
+Even though Tanstack Query manages the cache by itself, it also provides a fine grained control over the cache stored in memory. It has a series of built-in methods that allows the application to step in and take control of what's happening behind the scenes.
 
 The basic setup of a Tanstack Query instance for a React application would be:
 
@@ -131,11 +131,11 @@ render(<App />, document.getElementById('root'))
 // Source: https://tanstack.com/query/latest/docs/framework/react/quick-start
 ```
 
-The example above illustrates the basics of how to work with Tanstack Query. ***It covers the creation of a [stable query client](https://tanstack.com/query/latest/docs/eslint/stable-query-client), wrapping your application with a QueryClientProvider, accessing the query client from inside a component anywhere in the React tree, making a query, performing a mutation and invalidating the stale data of a specific query.***
+The example above illustrates the basics of how to work with Tanstack Query. It covers the creation of a [stable query client](https://tanstack.com/query/latest/docs/eslint/stable-query-client), wrapping your application with a QueryClientProvider, accessing the query client from inside a component anywhere in the React tree, making a query, performing a mutation and invalidating the stale data of a specific query.
 
 ## How does Tanstack Query cache work?
 
-***Tanstack Query cache works around a concept called*** [***query key***](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys). Every query must have a query key associated to it, this query key is simply an array of values that's used to distinguish one query from another. ***The query key is used as a key for that particular query inside the in-memory cache data structure***. With this key it's easy for the application to manipulate the data of a specific query.
+Tanstack Query cache works around a concept called [query key](https://tanstack.com/query/latest/docs/framework/react/guides/query-keys). Every query must have a query key associated to it, this query key is simply an array of values that's used to distinguish one query from another. The query key is used as a key for that particular query inside the in-memory cache data structure. With this key it's easy for the application to manipulate the data of a specific query.
 
 ```tsx
 import { useQuery } from '@tanstack/react-query'
@@ -156,7 +156,7 @@ function User() {
 }
 ```
 
-Now, the data for that particular user is cached, and ***whenever the application needs this data it'll reach for its cached version and revalidate it in background***, which ***allows users to have a better experience as they don't need to wait for data they have already fetched before***. Besides, now cached data can be accessed and manipulated using:
+Now, the data for that particular user is cached, and whenever the application needs this data it'll reach for its cached version and revalidate it in background, which allows users to have a better experience as they don't need to wait for data they have already fetched before. Besides, now cached data can be accessed and manipulated using:
 
 - [`getQueryData`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientgetquerydata)
 - [`getQueriesData`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientgetqueriesdata)
@@ -167,7 +167,7 @@ It's also possible to [invalidate](https://tanstack.com/query/latest/docs/framew
 
 - [`invalidateQueries`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientinvalidatequeries)
 
-Another important aspect of caching is the ***stale data***. ***Data is considered to be stale when the application no longer have its most up-to-date version***. Tanstack Query has a stale time option, which is important for managing how long the data fetched by queries is considered fresh. ***The stale time defaults to 0 milliseconds, meaning that queries will be updated in background every time the component mounts or when the window is refocused***. The ***stale time can be customized to the application's needs*** to optimize performance and reduce unnecessary data fetching.
+Another important aspect of caching is the stale data. Data is considered to be stale when the application no longer have its most up-to-date version. Tanstack Query has a stale time option, which is important for managing how long the data fetched by queries is considered fresh. The stale time defaults to 0 milliseconds, meaning that queries will be updated in background every time the component mounts or when the window is refocused. The stale time can be customized to the application's needs to optimize performance and reduce unnecessary data fetching.
 
 ```ts
 const { data } = useQuery({ 
@@ -199,9 +199,9 @@ For more information about caching in Tanstack Query:
 
 ## Initial vs placeholder data
 
-***The initial and placeholder data options are two different ways to inform how the query needs to behave when no data is stored in cache***. 
+The initial and placeholder data options are two different ways to inform how the query needs to behave when no data is stored in cache. 
 
-The ***initial data option provides to the query the data (not partial) that's going to be shown initially in the application, skipping the loading state and caching its value***, being useful whenever the data is somehow available already. However, as the stale time defaults to 0 milliseconds the query is going to be revalidated immediately, so to avoid this the following can be done:
+The initial data option provides to the query the data (not partial) that's going to be shown initially in the application, skipping the loading state and caching its value, being useful whenever the data is somehow available already. However, as the stale time defaults to 0 milliseconds the query is going to be revalidated immediately, so to avoid this the following can be done:
 
 ```ts
 // Show initialTodos immediately, but won't refetch until another interaction event is encountered after 1000 ms
@@ -219,7 +219,7 @@ const result = useQuery({
 
 By comparing the difference between `staleTime` and `initialDataUpdatedAt` the query knows if the initial data is fresh or not and needs to be revalidated. 
 
-***Another option is to pass a function as the initial data to the query***. The function is going to be executed only once when the query is initialized.
+Another option is to pass a function as the initial data to the query. The function is going to be executed only once when the query is initialized.
 
 ```ts
 const result = useQuery({
@@ -231,9 +231,9 @@ const result = useQuery({
 })
 ```
 
-One more important thing illustrated in the example above is ***how the cache from other queries can be used to populate another's query cache with the initial data option***. By using the query client and its built-in methods `getQueryData` and `getQueryState` it's possible to access another's query data and state, and use them however the application needs.
+One more important thing illustrated in the example above is how the cache from other queries can be used to populate another's query cache with the initial data option. By using the query client and its built-in methods `getQueryData` and `getQueryState` it's possible to access another's query data and state, and use them however the application needs.
 
-On the other hand, there's ***the placeholder data option which allows the queries to behave as if they already have data, similar to the initial data option, but it does not persist the data to the cache***. It's useful when there's enough partial or fake data that can be displayed beforehand while the actual data is fetched in background.
+On the other hand, there's the placeholder data option which allows the queries to behave as if they already have data, similar to the initial data option, but it does not persist the data to the cache. It's useful when there's enough partial or fake data that can be displayed beforehand while the actual data is fetched in background.
 
 ```ts
 function Todos() {
@@ -247,7 +247,7 @@ function Todos() {
 // Source: https://tanstack.com/query/latest/docs/framework/react/guides/placeholder-query-data
 ```
 
-Additionally, ***the function version of the placeholder data option have access to the previous data of that query, which means it's possible to avoid showing loading states while fetching with dynamic queries like: fetching something by its id, or a*** [***paginated query***](https://tanstack.com/query/latest/docs/framework/react/guides/paginated-queries#better-paginated-queries-with-placeholderdata).
+Additionally, the function version of the placeholder data option have access to the previous data of that query, which means it's possible to avoid showing loading states while fetching with dynamic queries like: fetching something by its id, or a [paginated query](https://tanstack.com/query/latest/docs/framework/react/guides/paginated-queries#better-paginated-queries-with-placeholderdata).
 
 ```ts
 const result = useQuery({
@@ -273,13 +273,13 @@ const result = useQuery({
 
 ## Prefetching data
 
-Prefetching data basically means **fetching resources that will be possibly needed before they are actually needed**. There are some different prefetching patterns:
+Prefetching data basically means fetching resources that will be possibly needed before they are actually needed. There are some different prefetching patterns:
 
 - Inside components
 - Inside event handlers
 - Via router (more about this later)
 
-***When rendering components there are often cases where a child component that needs to fetch some piece of data needs its parent query to be finished loading so it can be rendered and then start fetching the data it actually needs***. This generates what's called [***request waterfall***](https://tanstack.com/query/latest/docs/framework/react/guides/request-waterfalls) and can lead to poor user experience and perceived performance. For example:
+When rendering components there are often cases where a child component that needs to fetch some piece of data needs its parent query to be finished loading so it can be rendered and then start fetching the data it actually needs. This generates what's called [request waterfall](https://tanstack.com/query/latest/docs/framework/react/guides/request-waterfalls) and can lead to poor user experience and perceived performance. For example:
 
 ```tsx
 function Article({ id }) {
@@ -399,9 +399,9 @@ Note that if the component is being suspended the application needs to use `useP
 - [`usePrefetchQuery`](https://tanstack.com/query/latest/docs/framework/react/reference/usePrefetchQuery)
 - [`useSuspenseQuery`](https://tanstack.com/query/latest/docs/framework/react/reference/useSuspenseQuery)
 
-Another way to prefetch data is by ***identifying the user's intentions with event handlers and then fetching the data that's possibly going to be needed***. It's possible to do this by using the [`prefetchQuery`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientprefetchquery) method.
+Another way to prefetch data is by identifying the user's intentions with event handlers and then fetching the data that's possibly going to be needed. It's possible to do this by using the [`prefetchQuery`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientprefetchquery) method.
 
-***This method only populates the query cache and returns nothing.***
+This method only populates the query cache and returns nothing.
 
 ```tsx
 function ShowDetailsButton() {
@@ -427,11 +427,11 @@ function ShowDetailsButton() {
 // Source: https://tanstack.com/query/latest/docs/framework/react/guides/prefetching
 ```
 
-By doing this ***anytime the user hovers over or focus on the element, the data is going to be prefetched***. It's important to set a stale time in this cases so the application does not make a lot of unnecessary requests to the server.
+By doing this anytime the user hovers over or focus on the element, the data is going to be prefetched. It's important to set a stale time in this cases so the application does not make a lot of unnecessary requests to the server.
 
 ## Ensure query data
 
-Tanstack query provides a ***method to populate the query client cache called [`ensureQueryData`](https://tanstack.com/query/latest/docs/reference/QueryClient#queryclientensurequerydata) that can be used to make sure the data of a given query is available when needed***. Ensuring the query data is there means ***the method is going to check if the query being made has cached data that's not stale and return it, if the query does not have cached data yet the `ensureQueryData` method calls the api internally, saves its response to the cache and returns the data***.
+Tanstack query provides a method to populate the query client cache called [`ensureQueryData`](https://tanstack.com/query/latest/docs/reference/QueryClient#queryclientensurequerydata) that can be used to make sure the data of a given query is available when needed. Ensuring the query data is there means the method is going to check if the query being made has cached data that's not stale and return it, if the query does not have cached data yet the `ensureQueryData` method calls the api internally, saves its response to the cache and returns the data.
 
 ```ts
 const data = await queryClient.ensureQueryData({ queryKey, queryFn })
@@ -439,7 +439,7 @@ const data = await queryClient.ensureQueryData({ queryKey, queryFn })
 // Source: https://tanstack.com/query/latest/docs/reference/QueryClient#queryclientensurequerydata
 ```
 
-***This is useful when the application needs to prefetch data that may have been cached already***. For example, inside routes loaders as the page could be accessed directly via its URL and this would require all the data to be loaded from scratch inside the loader, or the page could be open by the user navigating to it using a link that may prefetch the data of its target page when the mouse is over it, which means the route loader does not need to prefetch the data again.
+This is useful when the application needs to prefetch data that may have been cached already. For example, inside routes loaders as the page could be accessed directly via its URL and this would require all the data to be loaded from scratch inside the loader, or the page could be open by the user navigating to it using a link that may prefetch the data of its target page when the mouse is over it, which means the route loader does not need to prefetch the data again.
 
 ## Infinite queries
 
@@ -502,7 +502,7 @@ function Projects() {
 // Source: https://tanstack.com/query/latest/docs/framework/react/guides/infinite-queries
 ```
 
-Also, ***it's possible to prefetch the data of infinite queries inside effects, callbacks and outside React*** using:
+Also, it's possible to prefetch the data of infinite queries inside effects, callbacks and outside React using:
 
 - [`prefetchInfiniteQuery`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientprefetchinfinitequery)
 - [`ensureInfiniteQueryData`](https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientensureinfinitequerydata)
@@ -526,7 +526,7 @@ The state of a query can be:
 
 ## Routes loaders
 
-Most ***modern client-side routers allows the applications to have a loader function that executes outside the framework being used, meaning that the loader is going to be executed before the framework render the page***.
+Most modern client-side routers allows the applications to have a loader function that executes outside the framework being used, meaning that the loader is going to be executed before the framework render the page.
 
 In [React Router Dom](https://reactrouter.com/en/main) since version 6, it's possible to setup a loader for each individual route as the following:
 
@@ -543,7 +543,7 @@ createBrowserRouter([
 // Source: https://reactrouter.com/en/main/route/loader
 ```
 
-By using loaders ***it's possible to retrieve data from anywhere like external services, and make it available to the component being rendered in this loaders route***.
+By using loaders it's possible to retrieve data from anywhere like external services, and make it available to the component being rendered in this loaders route.
 
 ```ts
 function loader({ request }) {
@@ -566,12 +566,12 @@ function SomeRoute() {
 // Source: https://reactrouter.com/en/main/route/loader
 ```
 
-Another important thing to notice is that ***when lazy-loading components, React Router Dom is going to call the lazy and the loader functions at the same time***, so by the time the browser finishes downloading the javascript to render the page it's highly possible the loader has finished run meaning the data will be available almost instantly.
+Another important thing to notice is that when lazy-loading components, React Router Dom is going to call the lazy and the loader functions at the same time, so by the time the browser finishes downloading the javascript to render the page it's highly possible the loader has finished run meaning the data will be available almost instantly.
 ## Integrating routes loaders and Tanstack Query
 
 Even though it's possible to use the router capabilities alone to make data available early in the application, it's even better to combine both and take advantage of their strengths.
 
-That said, ***the application can leverage the way loaders work and the moment they are run in the life cycle to prefetch resources using Tanstack Query***.
+That said, the application can leverage the way loaders work and the moment they are run in the life cycle to prefetch resources using Tanstack Query.
 
 ```ts
 import { createBrowserRouter } from 'react-router-dom'
@@ -603,7 +603,7 @@ There are some good practices that are advised to be followed when using Tanstac
 
 ## Awaiting promises
 
-Regarding the performance of prefetching queries, ***it's important to pay attention to blocking code** as sometimes awaiting for a promise to be resolved is not required for the application.
+Regarding the performance of prefetching queries, it's important to pay attention to blocking code as sometimes awaiting for a promise to be resolved is not required for the application.
 
 ```ts
 // Non-blocking code
@@ -619,7 +619,7 @@ async function prefetch() {
 
 There's nothing else after the `prefetchQuery` call so it's not necessarily needed to await the promise unless it's intentional.
 
-Another important thing to keep in mind is to ***use promise concurrency when necessary***. Sometimes a function needs to prefetch more than one query at a time and this can lead to poor perceived performance and big loading times if the promises are not resolved concurrently.
+Another important thing to keep in mind is to use promise concurrency when necessary. Sometimes a function needs to prefetch more than one query at a time and this can lead to poor perceived performance and big loading times if the promises are not resolved concurrently.
 
 ```ts
 // Bad - await for each promise to be resolved
@@ -639,11 +639,11 @@ async function prefetch() {
 }
 ```
 
-Note that ***sometimes a query may need a piece of information that returns from another query so prefetching the query earlier or persisting the important values in places that can be accessed globally like the local storage or the URL may be good strategies***.
+Note that sometimes a query may need a piece of information that returns from another query so prefetching the query earlier or persisting the important values in places that can be accessed globally like the local storage or the URL may be good strategies.
 
 ## Reusability and isolation
 
-An extra good practice is to ***isolate queries in functions so that they can be reused easily in different places***. Also, it's important to ***remember to expose the important things while keeping a good level of encapsulation***. Tanstack Query has a helper function called [`queryOptions`](https://tanstack.com/query/latest/docs/framework/react/reference/queryOptions#queryoptions) that facilitates this:
+An extra good practice is to isolate queries in functions so that they can be reused easily in different places. Also, it's important to remember to expose the important things while keeping a good level of encapsulation. Tanstack Query has a helper function called [`queryOptions`](https://tanstack.com/query/latest/docs/framework/react/reference/queryOptions#queryoptions) that facilitates this:
 
 ```ts
 // users-query-options.ts
@@ -691,7 +691,7 @@ export function useUsers<TReturn = ApiUser[]>({
 }
 ```
 
-The custom React hook above is a good strategy to isolate queries. It exposes the `select` and `initialData` methods and returns only a subset of the `useQuery` return object. ***Note how the hook is typed using generics, allowing the returned data type to be inferred from the return of the `select` method which defaults to the original return type***, this is extremely important for type-safety.
+The custom React hook above is a good strategy to isolate queries. It exposes the `select` and `initialData` methods and returns only a subset of the `useQuery` return object. Note how the hook is typed using generics, allowing the returned data type to be inferred from the return of the `select` method which defaults to the original return type, this is extremely important for type-safety.
 
 Usage of the custom hook:
 
@@ -711,13 +711,13 @@ export function Users() {
 }
 ```
 
-Additionally, ***it's important to use stable functions on the `select` and `initialData` parameters*** as this optimizes the rendering process. Stable functions can be functions created or imported from outside React's context (hooks, components, etc...), or functions that were memoized by `useCallback`. For more information see:
+Additionally, it's important to use stable functions on the `select` and `initialData` parameters as this optimizes the rendering process. Stable functions can be functions created or imported from outside React's context (hooks, components, etc...), or functions that were memoized by `useCallback`. For more information see:
 
 [Render optimizations](https://tanstack.com/query/latest/docs/framework/react/guides/render-optimizations)
 
 ## Query client
 
-Also, apart from the things mentioned above ***it's important to set default values for important options in the query client instance***.
+Also, apart from the things mentioned above it's important to set default values for important options in the query client instance.
 
 ```ts
 import { QueryClient } from "@tanstack/react-query";
